@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+   
+     <style>
+        body {
+            font-family: Georgia, serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        h2 {
+            
+            color: #f7a354;
+            text-align:center;
+            padding: 30px;
+        }
+        table {
+            width: 70%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        th, td {
+            padding: 20px;
+            text-align: left;
+        }
+        th {
+            background-color: #f76714;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f7c17e;
+        }
+        tr:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <h2>List Authors</h2>
+    
+<table>
+   <thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Email</th>
+<th>NBCLASS</th>
+<th>Action</th>
+</tr>
+  </thead>
+  <tbody>
+{% for author in authors %}
+<tr>
+<td>{{author.id}}</td>
+<td>{{author.username}}</td>
+<td>{{author.email}}</td>
+<td>{{author.NBCLASS}}</td>
+
+<td><a href={{path('app_author_delete',{id:author.id})}}>Delete</a></td>
+<td><a href={{path('app_author_update',{id:author.id})}}>Update</a></td>
+</tr>
+{% endfor %}
+</table>
+ </tbody> 
+</body>
+</html>

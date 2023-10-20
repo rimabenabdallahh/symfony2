@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+   
+     <style>
+        body {
+            font-family: Georgia, serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        h2 {
+            
+            color: #f7a354;
+            text-align:center;
+            padding: 30px;
+        }
+        table {
+            width: 70%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        th, td {
+            padding: 20px;
+            text-align: left;
+        }
+        th {
+            background-color: #f76714;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f7c17e;
+        }
+        tr:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <h2>List Books</h2>
+ {% set nbpublished = 0 %}
+  {% set nbunpublished = 0 %}
+<table>
+ <thead>
+<tr>
+<th>Ref</th>
+<th>Title</th>
+<th>Author</th>
+<th>Categorie</th>
+<th>Published</th>
+<th>Publication Date</th>
+<th>Action</th>
+</tr>
+ </thead>
+{% for book in books %}
+{% if book.published ==true %}
+{% set nbpublished=nbpublished+1 %}
+<tr>
+<td>{{book.Ref}}</td>
+<td>{{book.title}}</td>
+<td>{{book.Author.username}}</td>
+<td>{{book.Categorie}}</td>
+<td>{{book.published}}</td>
+<td>{{book.publicationDate |date}}</td>
+
+<td><a href="{{path('app_book_update',{id:book.ref})}}">Update</a></td>
+<td><a href="{{path('app_delete_book',{id:book.ref})}}">Delete</a></td>
+</tr>
+{% else %}
+{% set nbpublished=nbpublished+1 %}
+{% endif %}
+{% endfor %}
+</table>
+
+
+Number of published books = {{nbpublished}}</br>
+Number of unpublished books = {{nbunpublished}}
+
+</body>
+</html>
+
+
